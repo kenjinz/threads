@@ -1,3 +1,4 @@
+import { formatDateString } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -25,7 +26,8 @@ interface Props {
   isComment?: boolean;
 }
 const ThreadCard = (props: Props) => {
-  const { author, content, id, isComment, comments } = props;
+  const { author, content, id, isComment, comments, community, createdAt } =
+    props;
 
   return (
     <article
@@ -96,7 +98,26 @@ const ThreadCard = (props: Props) => {
             </div>
           </div>
         </div>
+        {/* TODO: Delete thread */}
+        {/* TODO: Show comment logos */}
       </div>
+      {!isComment && community && (
+        <Link
+          href={`/communitues/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)} - {community.name} Community
+          </p>
+          <Image
+            src={community.image}
+            alt="Community image"
+            width={14}
+            height={14}
+            className="ml-1 rounded-full object-cover"
+          />
+        </Link>
+      )}
     </article>
   );
 };

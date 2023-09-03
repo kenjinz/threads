@@ -7,9 +7,10 @@ type Props = {
   username: string;
   imgUrl: string;
   bio: string;
+  type?: 'User' | 'Community';
 };
 const ProfileHeader = (props: Props) => {
-  const { accountId, authUserId, name, username, imgUrl, bio } = props;
+  const { accountId, authUserId, name, username, imgUrl, bio, type } = props;
   return (
     <div className="flex w-full flex-col justify-start">
       <div className="flex items-center justify-between">

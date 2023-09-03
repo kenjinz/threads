@@ -59,7 +59,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       }
     }
 
-    await updateUser(user.id, {
+    await updateUser({
+      userId: user.id,
       name: values.name,
       username: values.username,
       bio: values.bio,
